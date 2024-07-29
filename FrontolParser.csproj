@@ -50,5 +50,11 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RetailTypes\RetailTypes.csproj">
+      <Project>{024cdf9a-8d47-47bf-9952-2a7981bede87}</Project>
+      <Name>RetailTypes</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
  </Project>
