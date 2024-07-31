@@ -1,22 +1,26 @@
-﻿using RetailTypes;
+﻿using FrontolParser.Xpos.Entities;
+using RetailTypes.Elements;
 using RetailTypes.Enums;
 using System;
 using System.Data.SQLite;
 
-namespace FrontolParser.Xpos.Entities.Transactions
+namespace FrontolParser.Xpos.Transactions.Position
 {
-    public class AddPosition : Transaction
+    [TransactionType(1,11)]
+    public class Registration : Transaction
     {
         public int WareId;
         public decimal Quantity;
         public int Price;
         public int TaxGroup;
+        public int Total;
+        public string BarCode;
         public Ware Ware { get => _ware ?? (_ware = new Ware(WareId)); }
         private Ware _ware;
 
         public override void Pull(int id)
         {
-            var sql = $"select cast(warecode as integer), price/100, quantity/1000000.0, cast(taxgroup_code as integer) from transactions where id = {id};";
+            var sql = $"select cast(warecode as integer), price/100, quantity/1000000.0, cast(taxgroup_code as integer), barcode, totalwithdiscount/100 from transactions where id = {id};";
             using (var connection = new SQLiteConnection($"Data Source={Xpos.selectedDb.MainPath}"))
             {
                 connection.Open();
@@ -32,23 +36,31 @@ namespace FrontolParser.Xpos.Entities.Transactions
                             Price = reader.GetInt32(1);
                             Quantity = reader.GetDecimal(2);
                             TaxGroup = reader.GetInt32(3);
+                            BarCode = reader.GetString(4);
+                            Total = reader.GetInt32(5);
                         }
                     }
                 }
             }
         }
 
-        public Position ToPosition()
+        public RetailTypes.Position ToPosition()
         {
-            return new Position()
+            var codes = new Codes();
+            if (BarCode.Length == 8) codes.EAN8 = BarCode;
+            else if (BarCode.Length == 13) codes.EAN13 = BarCode;
+            else if (BarCode.Length == 14) codes.ITF14 = BarCode;
+            return new RetailTypes.Position()
             {
                 Name = Ware.Name,
                 Price = Price,
                 Quantity = Quantity,
                 Calculation = (CalculationMethod) Ware.PaymentType,
                 MeasureUnit = ToMeasureUnit(Ware.Measure),
-                Tax = ToTax(TaxGroup), // todo
-                Type = ToType(Ware.ItemType, Ware.ProductType)
+                Tax = ToTax(TaxGroup),
+                Type = ToType(Ware.ItemType, Ware.ProductType),
+                Codes = codes,
+                Total = Total
             };
         }
         private MeasureUnit ToMeasureUnit(int index)
@@ -89,7 +101,6 @@ namespace FrontolParser.Xpos.Entities.Transactions
                     throw new Exception(); // todo
             }
         }
-
         private TaxType ToTax(int index)
         {
             return (TaxType)new int[] { -1, 4, 0, 1, 5, 2, 3 }[index];

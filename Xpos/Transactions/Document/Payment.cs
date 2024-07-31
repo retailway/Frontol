@@ -1,7 +1,9 @@
 ﻿using System.Data.SQLite;
+using FrontolParser.Xpos.Entities;
 
-namespace FrontolParser.Xpos.Entities.Transactions
+namespace FrontolParser.Xpos.Transactions.Document
 {
+    [TransactionType(40,41)]
     public class Payment: Transaction
     {
         public bool IsEcash;

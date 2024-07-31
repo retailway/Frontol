@@ -1,8 +1,10 @@
 ﻿using System.Data.SQLite;
+using FrontolParser.Xpos.Entities;
 
-namespace FrontolParser.Xpos.Entities.Transactions
+namespace FrontolParser.Xpos.Transactions.Position
 {
-    public class RemPosition : Transaction
+    [TransactionType(2,12)]
+    public class Storno : Transaction
     {
         public int WareId;
         public decimal Quantity;

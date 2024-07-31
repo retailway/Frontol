@@ -1,8 +1,10 @@
 ﻿using System.Data.SQLite;
+using FrontolParser.Xpos.Entities;
 
-namespace FrontolParser.Xpos.Entities.Transactions
+namespace FrontolParser.Xpos.Transactions.Document
 {
-    public class OpenReceipt : Transaction
+    [TransactionType(42)]
+    public class Open : Transaction
     {
         public string User;
         public override void Pull(int id)

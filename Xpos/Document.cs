@@ -1,6 +1,5 @@
 ﻿using FrontolParser.Enums;
 using FrontolParser.Xpos.Entities;
-using FrontolParser.Xpos.Entities.Transactions;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -59,7 +58,7 @@ namespace FrontolParser.Xpos
                                 if (index == -1) continue;
                                 Documents[index].Transactions.Add(Transaction.Parse(reader.GetInt32(2), reader.GetInt32(0)));
                             }
-                            catch (TypeLoadException) { }
+                            catch (Exception) { }
                         }
                     }
                 }

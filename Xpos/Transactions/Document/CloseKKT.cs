@@ -1,8 +1,10 @@
 ﻿using System.Data.SQLite;
+using FrontolParser.Xpos.Entities;
 
-namespace FrontolParser.Xpos.Entities.Transactions
+namespace FrontolParser.Xpos.Transactions.Document
 {
-    public class ExchangeOperator: Transaction
+    [TransactionType(45)]
+    public class CloseKKT : Transaction
     {
         public string StorageId;
         public string FiscalSign;

@@ -1,7 +1,9 @@
 ﻿using FrontolParser.Enums;
-using FrontolParser.Xpos.Entities.Transactions;
+using TrPos = FrontolParser.Xpos.Transactions.Position;
+using TrDoc = FrontolParser.Xpos.Transactions.Document;
 using RetailTypes;
 using RetailTypes.Enums;
+using RetailTypes.Elements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,14 +23,14 @@ namespace FrontolParser.Xpos.Entities
         public Receipt? ToReceipt()
         {
             if (Transactions.Count <= 1 || 
-                !(Transactions[0] is OpenReceipt trOpen) ||
-                !(Transactions.Last() is CloseReceipt trClose) ||
+                !(Transactions[0] is TrDoc.Open trOpen) ||
+                !(Transactions.Last() is TrDoc.Close trClose) ||
                 (!(Type > 18 && Type < 21) &&
                 !(Type > 24 && Type < 27) &&
                 Type >= 2)) return null;
             var rec = new Receipt()
             {
-                Payment = new RetailTypes.Payment(),
+                Payment = new Payment(),
                 Date = Close,
                 Cashier = trOpen.User,
                 Operation = ToOperation(Type)
@@ -38,26 +40,26 @@ namespace FrontolParser.Xpos.Entities
             {
                 switch (tr)
                 {
-                    case AddPosition add:
+                    case TrPos.Registration add:
                         var iAdd = positions.FindIndex(p => p.Item1 == add.WareId);
                         if(iAdd == -1) positions.Add((add.WareId, add.ToPosition()));
                         else positions[iAdd] = (positions[iAdd].Item1, positions[iAdd].Item2 + add.Quantity);
                         break;
-                    case RemPosition rem:
+                    case TrPos.Storno rem:
                         var iRem = positions.FindIndex(p => p.Item1 == rem.WareId);
                         if (iRem == -1) throw new KeyNotFoundException();
                         positions[iRem] = (positions[iRem].Item1, positions[iRem].Item2 - rem.Quantity);
                         if (positions[iRem].Item2.Quantity <= 0) positions.RemoveAt(iRem);
                         break;
-                    case RoundSum rSum:
-                        rec.HasRoundSum = true;
+                    case TrDoc.RoundSum rSum:
+                        rec.DoRoundTotal = true;
                         break;
-                    case ExchangeOperator exchange:
+                    case TrDoc.CloseKKT exchange:
                         rec.FiscalSign = exchange.FiscalSign;
                         rec.Id = exchange.DocId;
                         rec.StorageId = exchange.StorageId;
                         break;
-                    case Transactions.Payment pay:
+                    case TrDoc.Payment pay:
                         if(pay.IsEcash)
                             rec.Payment.EcashSum += pay.Sum;
                         else
