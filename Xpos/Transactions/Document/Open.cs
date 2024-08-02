@@ -1,7 +1,7 @@
 ﻿using System.Data.SQLite;
-using FrontolParser.Xpos.Entities;
+using RetailWay.Frontol.Xpos.Entities;
 
-namespace FrontolParser.Xpos.Transactions.Document
+namespace RetailWay.Frontol.Xpos.Transactions.Document
 {
     [TransactionType(42)]
     public class Open : Transaction

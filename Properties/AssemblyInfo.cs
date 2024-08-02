@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанные со сборкой.
-[assembly: AssemblyTitle("FrontolParser")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("RetailWay.Frontol")]
+[assembly: AssemblyDescription("Integration of Frontol Software")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("FrontolParser")]
-[assembly: AssemblyCopyright("Copyright ©  2024")]
+[assembly: AssemblyCompany("RetailWay")]
+[assembly: AssemblyProduct("RetailWay.Frontol")]
+[assembly: AssemblyCopyright("Copyright © RetailWay 2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

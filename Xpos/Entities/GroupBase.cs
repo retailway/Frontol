@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Xml;
 
-namespace FrontolParser.Xpos.Entities
+namespace RetailWay.Frontol.Xpos.Entities
 {
     public class GroupBase : TypeBase, IEnumerable<TypeBase>
     {

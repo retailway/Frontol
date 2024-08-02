@@ -1,4 +1,4 @@
-﻿namespace FrontolParser.Xpos.Entities
+﻿namespace RetailWay.Frontol.Xpos.Entities
 {
     public abstract class TypeBase
     {

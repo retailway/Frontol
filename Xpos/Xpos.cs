@@ -1,9 +1,9 @@
 ﻿using System.Xml;
-using FrontolParser.Xpos.Entities;
+using RetailWay.Frontol.Xpos.Entities;
 using System.Collections.Generic;
 using System.Data.SQLite;
 
-namespace FrontolParser.Xpos
+namespace RetailWay.Frontol.Xpos
 {
     public static partial class Xpos
     {

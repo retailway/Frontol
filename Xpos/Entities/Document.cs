@@ -1,14 +1,14 @@
-﻿using FrontolParser.Enums;
-using TrPos = FrontolParser.Xpos.Transactions.Position;
-using TrDoc = FrontolParser.Xpos.Transactions.Document;
-using RetailTypes;
-using RetailTypes.Enums;
-using RetailTypes.Elements;
+﻿using RetailWay.Frontol.Enums;
+using TrPos = RetailWay.Frontol.Xpos.Transactions.Position;
+using TrDoc = RetailWay.Frontol.Xpos.Transactions.Document;
+using RetailWay.Types;
+using RetailWay.Types.Enums;
+using RetailWay.Types.Elements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FrontolParser.Xpos.Entities
+namespace RetailWay.Frontol.Xpos.Entities
 {
     public class Document
     {

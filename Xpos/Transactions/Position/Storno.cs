@@ -1,7 +1,7 @@
 ﻿using System.Data.SQLite;
-using FrontolParser.Xpos.Entities;
+using RetailWay.Frontol.Xpos.Entities;
 
-namespace FrontolParser.Xpos.Transactions.Position
+namespace RetailWay.Frontol.Xpos.Transactions.Position
 {
     [TransactionType(2,12)]
     public class Storno : Transaction

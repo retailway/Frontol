@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FrontolParser.Xpos
+namespace RetailWay.Frontol.Xpos
 {
     internal class TransactionTypeAttribute: Attribute
     {

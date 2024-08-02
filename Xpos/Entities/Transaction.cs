@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection;
 
-namespace FrontolParser.Xpos.Entities
+namespace RetailWay.Frontol.Xpos.Entities
 {
     public abstract class Transaction 
     {

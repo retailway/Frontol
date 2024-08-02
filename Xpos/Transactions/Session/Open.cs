@@ -1,6 +1,6 @@
-﻿using FrontolParser.Xpos.Entities;
+﻿using RetailWay.Frontol.Xpos.Entities;
 
-namespace FrontolParser.Xpos.Transactions.Session
+namespace RetailWay.Frontol.Xpos.Transactions.Session
 {
     [TransactionType(62)]
     internal class Open : Transaction

@@ -1,4 +1,4 @@
-﻿namespace FrontolParser.Enums
+﻿namespace RetailWay.Frontol.Enums
 {
     public enum DocumentState
     {

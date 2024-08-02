@@ -1,6 +1,6 @@
 ﻿using System.Data.SQLite;
 
-namespace FrontolParser.Xpos.Entities
+namespace RetailWay.Frontol.Xpos.Entities
 {
     public class Ware
     {

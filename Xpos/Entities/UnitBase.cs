@@ -1,7 +1,7 @@
 ﻿using System.Xml;
 using System;
 
-namespace FrontolParser.Xpos.Entities
+namespace RetailWay.Frontol.Xpos.Entities
 {
     public class UnitBase : TypeBase
     {

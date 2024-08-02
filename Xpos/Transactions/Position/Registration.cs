@@ -1,10 +1,11 @@
-﻿using FrontolParser.Xpos.Entities;
-using RetailTypes.Elements;
-using RetailTypes.Enums;
+﻿using RetailWay.Frontol.Xpos.Entities;
+using RetailWay.Types.Elements;
+using RetailWay.Types.Enums;
+using Retail = RetailWay.Types;
 using System;
 using System.Data.SQLite;
 
-namespace FrontolParser.Xpos.Transactions.Position
+namespace RetailWay.Frontol.Xpos.Transactions.Position
 {
     [TransactionType(1,11)]
     public class Registration : Transaction
@@ -44,13 +45,13 @@ namespace FrontolParser.Xpos.Transactions.Position
             }
         }
 
-        public RetailTypes.Position ToPosition()
+        public Retail.Position ToPosition()
         {
             var codes = new Codes();
             if (BarCode.Length == 8) codes.EAN8 = BarCode;
             else if (BarCode.Length == 13) codes.EAN13 = BarCode;
             else if (BarCode.Length == 14) codes.ITF14 = BarCode;
-            return new RetailTypes.Position()
+            return new Retail.Position()
             {
                 Name = Ware.Name,
                 Price = Price,

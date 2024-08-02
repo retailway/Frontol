@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>RetailWay.Frontol</id>
+    <version>1.0.0</version>
+    <title>RetailWay.Frontol</title>
+    <authors>RetailWay</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <description>Integration of Frontol Software</description>
+    <copyright>$copyright$</copyright>
+	<repository type="git" url="https://github.com/retailway/Frontol"/>
+    <tags>retail frontol</tags>
+  </metadata>
+</package>
